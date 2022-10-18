@@ -1,0 +1,9 @@
+.fab {
+	border-radius: 100% !important;
+	bottom: 25px !important;
+	font-size: 24px !important;
+	padding: 16px !important;
+	position: fixed !important;
+	right: 25px !important;
+	z-index: 999;
+}
