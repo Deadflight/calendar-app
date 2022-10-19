@@ -6,8 +6,9 @@ interface Props {
 	notes: string;
 	start: Date;
 	end: Date;
+	id: string;
 	bgColor: string;
-	user: { _id: string; name: string };
+	user: { id: string; name: string };
 }
 
 export const CalendarEvent: ComponentType<EventProps<Props>> = (

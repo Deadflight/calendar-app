@@ -1,24 +1,22 @@
 import React from "react";
-import { useCalendarStore, useUiStore } from "../../hooks";
+import { useAuthStore, useCalendarStore, useUiStore } from "../../hooks";
 import "./FabAddNew.css";
 import { addHours } from "date-fns";
 
 export const FabAddNew = () => {
 	const { openDateModal } = useUiStore();
 	const { setActiveEvent } = useCalendarStore();
+	const { user } = useAuthStore();
 
 	const handleClickNew = () => {
 		setActiveEvent({
 			title: "",
-			_id: "",
+			id: "",
 			notes: "",
 			start: new Date(),
 			end: addHours(new Date(), 2),
 			bgColor: "#fafafa",
-			user: {
-				_id: "",
-				name: "",
-			},
+			user: user,
 		});
 		openDateModal();
 	};

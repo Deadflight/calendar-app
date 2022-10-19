@@ -8,14 +8,14 @@ import {
 } from "../";
 
 import { Calendar, Event, EventPropGetter, View } from "react-big-calendar";
-
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { localizer } from "../helpers";
 import { useUiStore, useCalendarStore } from "../../hooks";
+import { useEffect } from "react";
 import { IEvent } from "../../interfaces";
 
 export const CalendarPage = () => {
-	const { events, setActiveEvent } = useCalendarStore();
+	const { events, setActiveEvent, startLoadingEvents } = useCalendarStore();
 	const { openDateModal } = useUiStore();
 
 	const [lastView, setLastView] = useState<View>(
@@ -40,20 +40,24 @@ export const CalendarPage = () => {
 		};
 	};
 
-	const onDoubleClick = (event: Event) => {
+	const onDoubleClick = (event: IEvent) => {
 		openDateModal();
 	};
 
 	const onSelect = (event: any) => {
 		setActiveEvent({
 			...event,
-			_id: event._id || "",
+			id: event.id || "",
 		});
 	};
 
 	const onViewChange = (event: View) => {
 		console.log({ viewChange: event });
 	};
+
+	useEffect(() => {
+		startLoadingEvents();
+	}, []);
 
 	return (
 		<>
@@ -69,7 +73,7 @@ export const CalendarPage = () => {
 				}}
 				eventPropGetter={eventStyleGetter}
 				components={{
-					event: CalendarEvent,
+					event: CalendarEvent as any,
 				}}
 				onDoubleClickEvent={onDoubleClick}
 				onSelectEvent={onSelect}

@@ -7,12 +7,12 @@ import React, {
 } from "react";
 import Modal from "react-modal";
 import "./CalendarModalStyles.css";
-import { addHours, differenceInSeconds } from "date-fns";
-import DatePicker, { registerLocale } from "react-datepicker";
+import { differenceInSeconds } from "date-fns";
+import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
-import { useUiStore, useCalendarStore } from "../../hooks";
+import { useUiStore, useCalendarStore, useAuthStore } from "../../hooks";
 // import es from "date-fns/locale/e";
 import { Event } from "react-big-calendar";
 import { IEvent } from "../../interfaces";
@@ -38,17 +38,15 @@ export const CalendarModal = () => {
 	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 	const { isDateModalOpen, closeDateModal } = useUiStore();
 	const { activeEvent, startSavingEvent, setActiveEvent } = useCalendarStore();
+	const { user } = useAuthStore();
 	const [formValues, setFormValues] = useState<IEvent>({
 		title: "",
-		_id: "",
+		id: "",
 		notes: "",
 		start: new Date(),
 		end: new Date(),
 		bgColor: "",
-		user: {
-			_id: "",
-			name: "",
-		},
+		user: user,
 	});
 
 	useEffect(() => {
@@ -77,8 +75,8 @@ export const CalendarModal = () => {
 		event.preventDefault();
 		setIsFormSubmitted(true);
 		const difference = differenceInSeconds(
-			formValues?.end!,
-			formValues?.start!
+			formValues?.end! as Date,
+			formValues?.start! as Date
 		);
 
 		if (isNaN(difference) || difference <= 0) {
@@ -121,7 +119,7 @@ export const CalendarModal = () => {
 				<div className="form-group mb-2">
 					<label>Start date and hour</label>
 					<DatePicker
-						selected={formValues!.start}
+						selected={formValues!.start as Date}
 						className="form-control"
 						onChange={(event) => onDateChange(event, "start")}
 						dateFormat={"Pp"}
@@ -133,8 +131,8 @@ export const CalendarModal = () => {
 				<div className="form-group mb-2">
 					<label>End date and hour</label>
 					<DatePicker
-						minDate={formValues!.start}
-						selected={formValues!.end}
+						minDate={formValues!.start as Date}
+						selected={formValues!.end as Date}
 						className="form-control"
 						onChange={(event) => onDateChange(event, "end")}
 						dateFormat={"Pp"}
