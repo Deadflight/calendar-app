@@ -13,6 +13,6 @@ export interface IEvent {
 	start: string | Date;
 	end: string | Date;
 	allDay?: boolean;
-	bgColor: string;
-	user: IUser;
+	bgColor?: string;
+	user?: IUser;
 }
