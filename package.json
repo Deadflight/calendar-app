@@ -2,12 +2,13 @@
 	"name": "calendar-app",
 	"private": true,
 	"version": "0.0.0",
-	"type": "module",
+	"type": "commonjs",
 	"scripts": {
 		"dev": "vite",
-		"build": "tsc && vite build",
+		"build": "tsc && vite build && yarn pwa",
 		"preview": "vite preview",
-		"test": "jest --watchAll"
+		"test": "jest --watchAll",
+		"pwa": "workbox injectManifest"
 	},
 	"dependencies": {
 		"@popperjs/core": "^2.11.6",
@@ -22,19 +23,7 @@
 		"react-modal": "^3.15.1",
 		"react-redux": "^8.0.4",
 		"react-router-dom": "^6.4.2",
-		"sweetalert2": "^11.5.2",
-		"workbox-background-sync": "^6.5.4",
-		"workbox-broadcast-update": "^6.5.4",
-		"workbox-cacheable-response": "^6.5.4",
-		"workbox-core": "^6.5.4",
-		"workbox-expiration": "^6.5.4",
-		"workbox-google-analytics": "^6.5.4",
-		"workbox-navigation-preload": "^6.5.4",
-		"workbox-precaching": "^6.5.4",
-		"workbox-range-requests": "^6.5.4",
-		"workbox-routing": "^6.5.4",
-		"workbox-strategies": "^6.5.4",
-		"workbox-streams": "^6.5.4"
+		"sweetalert2": "^11.5.2"
 	},
 	"devDependencies": {
 		"@babel/preset-env": "^7.19.4",

@@ -8,20 +8,20 @@ export default defineConfig({
 	plugins: [
 		react(),
 		splitVendorChunkPlugin(),
-		VitePWA({
-			includeAssets: ["vite.svg"],
-			srcDir: "src",
-			filename: "sw.ts",
-			strategies: "injectManifest",
-			injectRegister: "auto",
-			registerType: "autoUpdate",
-			workbox: {
-				globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
-			},
-			devOptions: {
-				enabled: true,
-			},
-		}),
+		// VitePWA({
+		// 	includeAssets: ["vite.svg"],
+		// 	srcDir: "src",
+		// 	filename: "sw.ts",
+		// 	strategies: "injectManifest",
+		// 	injectRegister: "auto",
+		// 	registerType: "autoUpdate",
+		// 	workbox: {
+		// 		globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
+		// 	},
+		// 	devOptions: {
+		// 		enabled: true,
+		// 	},
+		// }),
 	],
 	server: {
 		port: 3000,
