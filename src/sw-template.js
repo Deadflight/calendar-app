@@ -40,8 +40,7 @@ const bgSyncPlugin = new BackgroundSyncPlugin("calendar-offline-posts", {
 	maxRetentionTime: 24 * 60, // Retry for max of 24 Hours (specified in minutes)
 });
 
-const API_URL =
-	"https://calendar-app-backend-production-26a8.up.railway.app/api";
+const API_URL = "https://calendar-app-backend-n085.onrender.com/api";
 
 registerRoute(
 	new RegExp(`${API_URL}/events`),
